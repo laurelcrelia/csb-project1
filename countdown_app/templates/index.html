@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"></html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homepage</title>
+</head>
+<body>
+    <h1>Countdown Timers</h1>
+    <ul>
+        {% if timers %}
+            <ul>
+                {% for timer in timers %}
+                    <li>
+                        {{ timer.title }} - {{ timer.expiration_date|date:"F j, Y" }}
+                        (Remaining:
+                        {% if timer.remaining_time.years > 0 %}{{ timer.remaining_time.years }} years{% endif %}
+                        {% if timer.remaining_time.months > 0 %}{{ timer.remaining_time.months }} months{% endif %}
+                        {% if timer.remaining_time.days > 0 %}{{ timer.remaining_time.days }} days{% endif %})
+                        <span id="countdown_{{ timer.id }}"></span>
+                        <a href="{% url 'delete' event_id=timer.id %}">Delete</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No events available.</p>
+        {% endif %}
+
+        <a href="/create">Create a new event</a>
+    </ul>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"></html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create a new event</title>
+</head>
+<body>
+    <form action="/create/" method="POST">
+      {%csrf_token%}
+      <h2>create a new event</h2>
+      <p>title:</p>
+      <input type="text" name="title" />
+      <p>date:</p>
+      <input type="date" name="expiration_date", required />
+      <p>
+        <button type="submit">create</button>
+      </p>
+    </form>
+  </body>
+</html>
