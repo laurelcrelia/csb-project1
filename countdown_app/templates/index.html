@@ -8,6 +8,7 @@
 </head>
 <body>
     <h1>Countdown Timers</h1>
+    <h2> {{user.username}}'s events</h2>
     <ul>
         {% if timers %}
             <ul>
@@ -27,6 +28,11 @@
         {% endif %}
 
         <a href="/create">Create a new event</a>
+
+        <form action='logout/' method="POST">
+			{% csrf_token %}
+            <input type="submit" value="Logout"/>
+        </form>
     </ul>
 </body>
 </html>

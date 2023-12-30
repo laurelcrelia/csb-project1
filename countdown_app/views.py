@@ -1,26 +1,52 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Timer
-from .forms import TimerForm
+from .forms import TimerForm, RegisterForm
 from django.utils import timezone
+from django.contrib.auth import authenticate, login
 from django.views.decorators.csrf import csrf_exempt # FIX 1 (CSRF Flaw): remove this line.
+from django.contrib.auth.decorators import login_required
 
+@login_required(login_url='/login')
 def homePageView(request):
-    timers = Timer.objects.all()
+    userid=request.user.id
+    query = "SELECT * FROM countdown_app_timer WHERE creator_id = %s" % userid
+    timers = Timer.objects.raw(query)
     for timer in timers:
         timer.remaining_time = calculate_remaining_time(timer.expiration_date)
 
     return render(request, 'index.html', {'timers': timers})
 
 @csrf_exempt # FIX 1 (CSRF Flaw): remove this @csrf_exempt.
+@login_required(login_url='/login')
 def createView(request):
     if request.method == 'POST':
         form = TimerForm(request.POST)
         if form.is_valid():
             timer = form.save(commit=False)
-            timer.save()
-        return redirect('/')
-    return render(request, 'create.html')
+            timer.creator = request.user
+            timer.save() 
+            return redirect('/')
+    else:
+        form = TimerForm()
 
+    return render(request, 'create.html', {'form': form})
+
+
+def registerView(request):
+    if request.method == 'POST':
+        form = RegisterForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password1')
+            user = authenticate(username=username, password=password)
+            login(request, user)
+            return redirect('/')
+    else:
+        form = RegisterForm()
+    return render(request, 'register.html', {'form': form})
+
+@login_required
 def deleteEvent(request, event_id):
     timer = get_object_or_404(Timer, pk=event_id)
     
