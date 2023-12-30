@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import Timer
 from .forms import TimerForm
 from django.utils import timezone
@@ -18,6 +18,15 @@ def createView(request):
             timer.save()
         return redirect('/')
     return render(request, 'create.html')
+
+def deleteEvent(request, event_id):
+    timer = get_object_or_404(Timer, pk=event_id)
+    
+    if request.method == 'POST':
+        timer.delete()
+        return redirect('/')
+    
+    return render(request, 'delete.html', {'timer': timer})
 
 def calculate_remaining_time(expiration_date):
     now = timezone.now()
