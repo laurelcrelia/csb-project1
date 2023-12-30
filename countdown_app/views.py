@@ -15,6 +15,15 @@ def homePageView(request):
         timer.remaining_time = calculate_remaining_time(timer.expiration_date)
 
     return render(request, 'index.html', {'timers': timers})
+# FIX 2 (Injection Flaw): 
+# def homePageView(request):
+#     userid = request.user.id
+#     timers = Timer.objects.filter(creator_id=userid)
+#     for timer in timers:
+#         timer.remaining_time = calculate_remaining_time(timer.expiration_date)
+
+#     return render(request, 'index.html', {'timers': timers})
+
 
 @csrf_exempt # FIX 1 (CSRF Flaw): remove this @csrf_exempt.
 @login_required(login_url='/login')
