@@ -19,7 +19,6 @@
                         {% if timer.remaining_time.months > 0 %}{{ timer.remaining_time.months }} months{% endif %}
                         {% if timer.remaining_time.days > 0 %}{{ timer.remaining_time.days }} days{% endif %})
                         <span id="countdown_{{ timer.id }}"></span>
-                        <a href="{% url 'delete' event_id=timer.id %}">Delete</a>
                     </li>
                 {% endfor %}
             </ul>
