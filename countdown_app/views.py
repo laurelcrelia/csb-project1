@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .models import Timer
 from .forms import TimerForm
 from django.utils import timezone
+from django.views.decorators.csrf import csrf_exempt # FIX 1 (CSRF Flaw): remove this line.
 
 def homePageView(request):
     timers = Timer.objects.all()
@@ -10,6 +11,7 @@ def homePageView(request):
 
     return render(request, 'index.html', {'timers': timers})
 
+@csrf_exempt # FIX 1 (CSRF Flaw): remove this @csrf_exempt.
 def createView(request):
     if request.method == 'POST':
         form = TimerForm(request.POST)
