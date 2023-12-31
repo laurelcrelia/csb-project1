@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Timer
-from .forms import TimerForm, RegisterForm
+from .forms import RegisterForm #TimerForm (FIX 3)
 from django.utils import timezone
 from django.contrib.auth import authenticate, login
 from django.views.decorators.csrf import csrf_exempt # FIX 1 (CSRF Flaw): remove this line.
@@ -29,16 +29,35 @@ def homePageView(request):
 @login_required(login_url='/login')
 def createView(request):
     if request.method == 'POST':
-        form = TimerForm(request.POST)
-        if form.is_valid():
-            timer = form.save(commit=False)
-            timer.creator = request.user
-            timer.save() 
-            return redirect('/')
-    else:
-        form = TimerForm()
+        title = request.POST.get('title', '')
+        expiration_date = request.POST.get('expiration_date', '')
 
-    return render(request, 'create.html', {'form': form})
+        timer = Timer.objects.create(
+            creator=request.user,
+            title=title, 
+            # Quick fix to XSS vulnerability would be to add escape() function which sanitizes user input
+            # title = escape(title)
+            expiration_date=expiration_date
+        )
+        
+        return redirect('/')
+    else:
+        return render(request, 'create.html')
+    
+#FIX 3 (XSS)
+# @login_required(login_url='/login')
+# def createView(request):
+#     if request.method == 'POST':
+#         form = TimerForm(request.POST)
+#         if form.is_valid():
+#             timer = form.save(commit=False)
+#             timer.creator = request.user
+#             timer.save() 
+#             return redirect('/')
+#     else:
+#         form = TimerForm()
+
+#     return render(request, 'create.html', {'form': form})
 
 
 def registerView(request):

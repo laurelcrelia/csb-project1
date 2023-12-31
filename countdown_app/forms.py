@@ -8,10 +8,11 @@ class RegisterForm(UserCreationForm):
         model = User
         fields = ["username", "password1", "password2"]
 
-class TimerForm(forms.ModelForm):
-    class Meta:
-        model = Timer
-        fields = ['title', 'expiration_date']
-        widgets = {
-            'expiration_date': forms.DateInput(attrs={'type': 'date'}),
-        }
+# FIX 3 (XSS)
+# class TimerForm(forms.ModelForm):
+#     class Meta:
+#         model = Timer
+#         fields = ['title', 'expiration_date']
+#         widgets = {
+#             'expiration_date': forms.DateInput(attrs={'type': 'date'}),
+#         }
