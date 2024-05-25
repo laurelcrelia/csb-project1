@@ -26,7 +26,7 @@ from django.contrib.auth.decorators import login_required
 
 @login_required(login_url='/login')
 def homePageView(request):
-    userid=request.user.id
+    userid=request.GET.get('userid', request.user.id)
     query = "SELECT * FROM countdown_app_timer WHERE creator_id = %s" % userid
     timers = Timer.objects.raw(query)
     for timer in timers:
