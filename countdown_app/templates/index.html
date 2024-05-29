@@ -14,7 +14,9 @@
             <ul>
                 {% for timer in timers %}
                     <li>
-                        {{ timer.title }} - {{ timer.expiration_date|date:"F j, Y" }}
+                        {{ timer.title|safe }} - {{ timer.expiration_date|date:"F j, Y" }}
+                        <!-- FIX 3 (XSS): Remove the filter 'safe' to let Django's templating engine to auto-escape -->
+                        <!-- {{ timer.title }} - {{ timer.expiration_date|date:"F j, Y" }} -->
                         (Remaining:
                         {% if timer.remaining_time.years > 0 %}{{ timer.remaining_time.years }} years{% endif %}
                         {% if timer.remaining_time.months > 0 %}{{ timer.remaining_time.months }} months{% endif %}
