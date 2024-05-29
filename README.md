@@ -52,7 +52,7 @@ To fix this, delete the @csrf_exempt so that the ‘create’ and ‘delete’ f
 
 ### FLAW 2 - Injection (OWASP A1:2017):
 Here, the query variable is built by directly initializing the ‘userid’ into the SQL query. The code is vulnerable to SQL injection if ‘userid’ is not appropriately sanitized.  
-https://github.com/laurelcrelia/csb-project1/blob/79b2f1e9173db2a038bb2a0113b1989118dff504/countdown_app/views.py#L30
+https://github.com/laurelcrelia/csb-project1/blob/1f48329b42fb315149830b376429a2f21158af34/countdown_app/views.py#L13-L14
 
 The way to fix this is to use Django ORM to construct the query. ORM stands for Object Relational Mapping and it is an API that Django uses to add, delete, modify and query objects in a more secure way.   
 https://github.com/laurelcrelia/csb-project1/blob/79b2f1e9173db2a038bb2a0113b1989118dff504/countdown_app/views.py#L37-L44
