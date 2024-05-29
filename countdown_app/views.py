@@ -7,23 +7,6 @@ from django.views.decorators.csrf import csrf_exempt # FIX 1 (CSRF Flaw): remove
 from django.contrib.auth.decorators import login_required
 
 
-# FIX 5 (Insufficient Logging & Monitoring):
-# For example:
-
-# Python's module 'logging'
-# import logging
-# logging.basicConfig(filename='app.log', level=logging.INFO)
-
-# Then you can add logging messages inside your code like this:
-# logging.info(f"User {request.user.username} deleted an event.") or
-# logging.error(f"Error in homePageView: {str(e)}")
-
-# or
-
-# Sentry: error tracking tool that helps monitor and log errors.
-# Installation: pip install sentry-sdk
-
-
 @login_required(login_url='/login')
 def homePageView(request):
     userid=request.GET.get('userid', request.user.id)
