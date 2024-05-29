@@ -59,10 +59,10 @@ https://github.com/laurelcrelia/csb-project1/blob/79b2f1e9173db2a038bb2a0113b198
 
 
 ### FLAW 3 - Cross-Site Scripting (XSS) (OWASP A7:2017)
-Third flaw is the cross-site scripting vulnerability. It exists in the ‘create’ form where a user can create a new event. The vulnerability makes it possible to insert malicious inputs like scripts. 
-https://github.com/laurelcrelia/csb-project1/blob/79b2f1e9173db2a038bb2a0113b1989118dff504/countdown_app/views.py#L56   
-Quick fix would be to use the escape() function in the ‘title’ input. It would sanitize the input by altering any special characters in the user’s input string. This would make it safer to render the input in HTML. Although the escape function is a good way to sanitize user input, I chose to use a bit longer formula which adds an additional layer of security. I used a TimerForm approach which exists in the forms.py file. TimerForm uses Django forms that include built-in security features. TimerForm automatically handles security concerns like input validation and sanitization.  
-https://github.com/laurelcrelia/csb-project1/blob/79b2f1e9173db2a038bb2a0113b1989118dff504/countdown_app/views.py#L66-L79
+Third flaw is the cross-site scripting vulnerability. In templates/index.html there is a template filter ‘safe’ that marks a string as safe for rendering, meaning it won't be auto-escaped. The vulnerability makes it possible to insert malicious inputs like HTML or Javascript scripts into the title, which would then be executed when the page is rendered.
+https://github.com/laurelcrelia/csb-project1/blob/bd52954721ace609c39199d5617fe7233349b990/countdown_app/templates/index.html#L17
+Fix for this is simple, just remove the filter to let Django's templating engine to auto-escape.
+https://github.com/laurelcrelia/csb-project1/blob/bd52954721ace609c39199d5617fe7233349b990/countdown_app/templates/index.html#L18-L19
 
 
 ### FLAW 4 - Security Misconfiguration (OWASP A6-2017):
