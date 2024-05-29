@@ -74,9 +74,8 @@ https://github.com/laurelcrelia/csb-project1/blob/79b2f1e9173db2a038bb2a0113b198
 
 ### FLAW 5 - Insufficient Logging & Monitoring (OWASP A10-2017):
 One of the security flaws is that my app has insufficient logging and monitoring. Attacks might go unnoticed if proper monitoring is not implemented. It would also be convenient to log critical security-related events like failed authentication attempts, access control failures and any other suspicious activity.  
-https://github.com/laurelcrelia/csb-project1/blob/79b2f1e9173db2a038bb2a0113b1989118dff504/countdown_app/views.py#L10-L24
-
-To fix this flaw, one could establish different ways to monitor, log and alert application’s events. For example, using Python's logging module or Sentry that integrates with Django and provides detailed error messages. 
+To fix this flaw, one could establish different ways to monitor, log and alert application’s events. For example, using Python's logging module to catch malicious login attempts. The proposed code logs failed login attempts, after 3 failed attempts happen in a row:
+https://github.com/laurelcrelia/csb-project1/blob/174f52620d3e4cf0f9e2e6ed8097d30b84d8d6c7/countdown_app/signals.py#L1-L26
 
 
 ---
