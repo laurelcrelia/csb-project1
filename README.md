@@ -2,25 +2,14 @@
 This is a project I for Cyber Security Base 2023 course.
 The task was to create a web application that has five different flaws from the OWASP top ten list.
 
----
-
-## Short description:
 This is event countdown timer app. The UI of the app is very basic because it was not the focus of this course. App has a simple authentication. User can register and log in. After successful login, user can create events. One can create an event by giving it a title and date. User’s homepage displays all the events that have been created and shows the remaining time to these events. 
 
 ---
 
-## Features: 
-- registration
-- login
-- create a new event
-- list of all existing events
-- remaining countdown time shown by the event
-- delete an event
-- logout
+## 🔗 [Features](documentation/features.md)
+## 🔗 [Installation](documentation/instructions.md)
 
 ---
-
-## 🔗 [Installation](documentation/instructions.md)
 
 ## Security flaws and how to fix them:
 
