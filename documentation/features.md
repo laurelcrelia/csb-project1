@@ -18,3 +18,6 @@ The main focus of this project was not the complexity of features, hence the ver
   ![Screenshot from 2024-12-11 20-20-02](https://github.com/user-attachments/assets/88be43cf-2a7f-433c-85a6-a6b03c122add)
 
 
+## Current functionality flaws:
+- can create an event that has already passed and app shows incorrect countdown
+- does not send appropriate error messages (for example when registration fails)
