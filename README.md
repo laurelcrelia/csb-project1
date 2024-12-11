@@ -1,6 +1,6 @@
 # :lock: Cyber Security Project I
 
-This repository contains Project I for the [Cyber Security Base](https://cybersecuritybase.mooc.fi/) 2023 course. The goal of the project was to develop a web application that intentionally includes five different security vulnerabilities from the OWASP Top Ten list.
+This repository contains Project I for the [Cyber Security Base](https://cybersecuritybase.mooc.fi/) 2023 course. The goal of the project was to develop a web application that intentionally includes five different security vulnerabilities from the OWASP [Top Ten list](https://owasp.org/www-project-top-ten/).
 
 The application is an event countdown timer. While the app’s user interface is kept basic, this aligns with the course's focus on demonstrating and understanding security flaws.
 
