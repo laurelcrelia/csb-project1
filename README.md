@@ -58,9 +58,3 @@ One of the security flaws is that my app has insufficient logging and monitoring
 To fix this flaw, one could establish different ways to monitor, log and alert application’s events. For example, using Python's logging module to catch malicious login attempts. The proposed code logs failed login attempts, after 3 failed attempts happen in a row:
 https://github.com/laurelcrelia/csb-project1/blob/174f52620d3e4cf0f9e2e6ed8097d30b84d8d6c7/countdown_app/signals.py#L1-L26
 
-
----
-
-## Current problems in app logic which I might fix in the future:
-- can create an event that has already passed and app shows incorrect countdown
-- does not send appropriate error messages (for example when registration fails)
