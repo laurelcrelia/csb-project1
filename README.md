@@ -1,17 +1,27 @@
-# Cyber Security Project I
-This is a project I for Cyber Security Base 2023 course.
-The task was to create a web application that has five different flaws from the OWASP top ten list.
+# :lock: Cyber Security Project I
 
-This is event countdown timer app. The UI of the app is very basic because it was not the focus of this course. App has a simple authentication. User can register and log in. After successful login, user can create events. One can create an event by giving it a title and date. User’s homepage displays all the events that have been created and shows the remaining time to these events. 
+This repository contains Project I for the [Cyber Security Base](https://cybersecuritybase.mooc.fi/) 2023 course. The goal of the project was to develop a web application that intentionally includes five different security vulnerabilities from the OWASP Top Ten list.
 
----
+The application is an event countdown timer. While the app’s user interface is kept basic, this aligns with the course's focus on demonstrating and understanding security flaws.
+
+## :books: What I learned
+- understanding common security vulnerabilities from the OWASP Top Ten list.
+- best practices for securing web applications
+- identifying potential security risks in code
+
+### Technologies
+- Python
+- Django
+- HTML
 
 ## 🔗 [Features](documentation/features.md)
 ## 🔗 [Installation](documentation/instructions.md)
 
 ---
 
-## Security flaws and how to fix them:
+## :bomb: Intentional Security Flaws
+
+Here is the description and fix for each security flaw that was included in the code.
 
 
 ### FLAW 1 - Cross-Site Request Forgery (CSRF):
